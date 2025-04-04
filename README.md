@@ -118,10 +118,10 @@ CMD ["python", "-m", "http.server", "8080"]
 > ```
 >
 > Y finalmente, crear un Pod o Deployment en Kubernetes y exponerlo con un Ingress o LoadBalancer:
-  ```bash
-  kubectl run top-gear --image=miusuario/gesture-emulator:latest --port=8080
-  kubectl expose pod top-gear --type=NodePort --port=80 --target-port=8080
-  ```
+> ```bash
+> kubectl run top-gear --image=miusuario/gesture-emulator:latest --port=8080
+> kubectl expose pod top-gear --type=NodePort --port=80 --target-port=8080
+> ```
   
 
 ## 🧩 docker-compose.yml
