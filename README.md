@@ -1,4 +1,5 @@
-# 🎮 Servidor Web de EmulatorJS con Python y Docker
+# 🎮 Gesture-browser-app 
+# Servidor Web de EmulatorJS con Python y Docker
 
 Este proyecto configura un servidor web ligero en Python, que sirve contenido del emulador [EmulatorJS](https://github.com/EmulatorJS/EmulatorJS) utilizando Docker y `docker-compose`.
 
@@ -12,10 +13,11 @@ Este proyecto configura un servidor web ligero en Python, que sirve contenido de
 ## 🛠️ Estructura del Proyecto
 
 ```
-📁 game/
-├── (tus archivos estáticos, opcionales)
+📁 gesture-browser-app/
+├── roms/
 ├── Dockerfile
-├── docker-compose.yml
+├── docker-compose.yaml
+├── index.html
 └── README.md
 ```
 
@@ -24,8 +26,8 @@ Este proyecto configura un servidor web ligero en Python, que sirve contenido de
 ### 1. Clona el repositorio
 
 ```bash
-git clone https://tu-repo.git
-cd tu-repo
+git clone https://github.com/Cristianguerrer/gesture-browser-app.git
+cd gesture-browser-app
 ```
 
 ### 2. Ejecuta el contenedor
@@ -34,24 +36,34 @@ cd tu-repo
 docker-compose up --build
 ```
 
-Este comando construirá la imagen, descargará EmulatorJS y expondrá el servidor en [http://localhost:8080](http://localhost:8080).
+Este comando construirá la imagen, descargará EmulatorJS y expondrá el servidor en [http://localhost:80](http://localhost:80).
 
 ## 🧱 Contenido del Dockerfile
 
 ```Dockerfile
+# Imagen base ligera con Python
 FROM python:3.14-rc-alpine
 
+# Establece el directorio de trabajo
 WORKDIR /game
 
+# Instala dependencias necesarias y limpia cache
 RUN apk add --no-cache curl p7zip && \
-    curl -L -o emulatorjs.7z https://github.com/EmulatorJS/EmulatorJS/releases/download/v4.2.1/4.2.1.7z && \
+    echo "Dependencias instaladas correctamente."
+
+# Descarga y extrae EmulatorJS
+RUN curl -L -o emulatorjs.7z https://github.com/EmulatorJS/EmulatorJS/releases/download/v4.2.1/4.2.1.7z && \
     7z x emulatorjs.7z && \
-    rm emulatorjs.7z
+    rm emulatorjs.7z && \
+    echo "EmulatorJS descargado y extraído correctamente."
 
-COPY . .
+# Copia tu aplicación (si hay archivos locales adicionales)
+COPY index.html .
 
+# Expone el puerto del servidor
 EXPOSE 8080
 
+# Comando por defecto al iniciar el contenedor
 CMD ["python", "-m", "http.server", "8080"]
 ```
 
@@ -60,22 +72,24 @@ CMD ["python", "-m", "http.server", "8080"]
 Abre tu navegador y visita:
 
 ```
-http://localhost:8080
+http://localhost:80
 ```
 
-Deberías ver los archivos servidos por el contenedor, incluyendo EmulatorJS.
+Deberías ver el EmulatorJS.
 
 ## 🧩 docker-compose.yml
 
 ```yaml
-version: '3.8'
+version: '3.0'
 
 services:
-  emulatorjs-server:
+  snes9x:
     build: .
+    container_name: snes9x
     ports:
-      - "8080:8080"
-    container_name: emulatorjs
+      - "80:8080"
+    volumes:
+      - ./roms/juego-top-gear.smc:/game/juego-top-gear.smc
 ```
 
 ## 📜 Licencia
