@@ -67,17 +67,6 @@ EXPOSE 8080
 CMD ["python", "-m", "http.server", "8080"]
 ```
 
-## 🧪 Verifica que funciona
-
-Abre tu navegador y visita:
-
-```
-http://localhost:80
-```
-
-Deberías ver el EmulatorJS.
-![alt text](image.png)
-
 ## 🧩 docker-compose.yml
 
 ```yaml
@@ -92,6 +81,18 @@ services:
     volumes:
       - ./roms/juego-top-gear.smc:/game/juego-top-gear.smc
 ```
+
+## 🧪 Verifica que funciona
+
+Abre tu navegador y visita:
+
+```
+http://localhost:80
+```
+
+Deberías ver el EmulatorJS.
+![alt text](image.png)
+
 
 ## 📜 Licencia
 
