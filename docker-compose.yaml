@@ -7,4 +7,4 @@ services:
     ports:
       - "80:8080"
     volumes:
-      - ./roms/juego-top-gear.smc:/game/juego-top-gear.smc
+      - ./roms/juego-top-gear.smc:/roms/juego-top-gear.smc
