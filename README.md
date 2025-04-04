@@ -77,12 +77,43 @@ RUN apk add --no-cache curl p7zip && \
     7z x emulatorjs.7z && \
     rm emulatorjs.7z
 
+# Copia tu aplicación (si hay archivos locales adicionales)
 COPY index.html .
+
+# Para Kubernetes
+# COPY . .
 
 EXPOSE 8080
 
 CMD ["python", "-m", "http.server", "8080"]
 ```
+
+> 🧩 **Nota para Kubernetes:**  
+> Si deseas usar esta aplicación en un entorno Kubernetes, puedes editar el Dockerfile de la siguiente manera:
+>
+> - Comenta la línea:
+>   ```Dockerfile
+>   COPY index.html .
+>   ```
+> - Descomenta la línea:
+>   ```Dockerfile
+>   COPY . .
+>   ```
+> 
+> Esto permitirá que se copien todos los archivos del proyecto, facilitando su despliegue como una imagen completa.
+> Luego puedes construir la imagen con:
+>
+> ```bash
+> docker build -t miusuario/gesture-emulator:latest .
+> docker push miusuario/gesture-emulator:latest
+> ```
+>
+> Y finalmente, crear un Pod o Deployment en Kubernetes y exponerlo con un Ingress o LoadBalancer:
+  ```bash
+  kubectl run top-gear --image=miusuario/gesture-emulator:latest --port=8080
+  kubectl expose pod top-gear --type=NodePort --port=80 --target-port=8080
+  ```
+  
 
 ## 🧩 docker-compose.yml
 
@@ -108,6 +139,7 @@ http://localhost:80
 ```
 
 Deberías ver EmulatorJS cargando el juego ROM. Usa tu cámara para controlarlo por gestos.
+
 ![alt text](image.png)
 
 ## 📜 Licencia
