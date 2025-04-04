@@ -1,5 +1,5 @@
 # 🎮 Gesture-browser-app 
-# Servidor Web de EmulatorJS con Python y Docker
+## Servidor Web de EmulatorJS con Python y Docker
 
 Este proyecto configura un servidor web ligero en Python, que sirve contenido del emulador [EmulatorJS](https://github.com/EmulatorJS/EmulatorJS) utilizando Docker y `docker-compose`.
 
