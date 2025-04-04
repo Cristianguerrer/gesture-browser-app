@@ -1,11 +1,24 @@
-FROM python:3.10-slim
+# Imagen base ligera con Python
+FROM python:3.14-rc-alpine
 
-WORKDIR /app
+# Establece el directorio de trabajo
+WORKDIR /game
 
-COPY . /app
+# Instala dependencias necesarias y limpia cache
+RUN apk add --no-cache curl p7zip && \
+    echo "Dependencias instaladas correctamente."
 
-RUN pip install fastapi uvicorn
+# Descarga y extrae EmulatorJS
+RUN curl -L -o emulatorjs.7z https://github.com/EmulatorJS/EmulatorJS/releases/download/v4.2.1/4.2.1.7z && \
+    7z x emulatorjs.7z && \
+    rm emulatorjs.7z && \
+    echo "EmulatorJS descargado y extraído correctamente."
 
-EXPOSE 8000
+# Copia tu aplicación (si hay archivos locales adicionales)
+COPY . .
 
-CMD ["python", "main.py"]
+# Expone el puerto del servidor
+EXPOSE 8080
+
+# Comando por defecto al iniciar el contenedor
+CMD ["python", "-m", "http.server", "8080"]

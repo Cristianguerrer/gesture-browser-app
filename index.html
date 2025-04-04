@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>SNES EmulatorJS</title>
+    <style>
+        body {
+            background-color: black;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+    </style>
+</head>
+<body>
+    <div id="game" style="width: 640px; height: 480px;"></div>
+
+    <script type="text/javascript">
+        EJS_player = "#game";
+        EJS_core = "snes";
+        EJS_gameUrl = "roms/juego.smc";  // Asegúrate de que este path coincida
+        EJS_pathtodata = "data/";
+        EJS_startOnLoaded = true;
+    </script>
+    <script src="data/loader.js"></script>
+</body>
+</html>

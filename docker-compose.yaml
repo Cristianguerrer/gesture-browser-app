@@ -1,6 +1,10 @@
 version: '3.0'
+
 services:
-  web:
+  snes9x:
     build: .
+    container_name: snes9x
     ports:
-      - "80:8000"
+      - "80:8080"
+    # volumes:
+    #   - ./roms:/roms     # monta tus ROMs desde el host
