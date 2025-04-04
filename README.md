@@ -7,7 +7,7 @@ Este proyecto configura un servidor web ligero que aloja EmulatorJS para jugar e
 
 - Imagen ligera basada en `python:3.14-rc-alpine`.
 - Descarga automática y extracción de EmulatorJS.
-- Servidor HTTP simple en el puerto `8080`, accesible desde el navegador.
+- Servidor HTTP simple en el puerto `80`, accesible desde el navegador.
 - Control de juegos con gestos de la mano gracias a OpenCV, MediaPipe y `pyautogui`.
 
 ## 🎮 Control por gestos
