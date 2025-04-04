@@ -76,6 +76,7 @@ http://localhost:80
 ```
 
 Deberías ver el EmulatorJS.
+![alt text](image.png)
 
 ## 🧩 docker-compose.yml
 
