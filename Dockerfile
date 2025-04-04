@@ -15,10 +15,10 @@ RUN curl -L -o emulatorjs.7z https://github.com/EmulatorJS/EmulatorJS/releases/d
     echo "EmulatorJS descargado y extraído correctamente."
 
 # Copia tu aplicación (si hay archivos locales adicionales)
-COPY index. .
+COPY index.html .
 
 # Para kubernetes
-# COPY index.html .
+# COPY . .
 
 # Expone el puerto del servidor
 EXPOSE 8080
