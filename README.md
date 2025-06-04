@@ -149,7 +149,7 @@ http://localhost:80
 
 Deberías ver EmulatorJS cargando el juego ROM. Usa tu cámara para controlarlo por gestos.
 
-![alt text](image.png)
+![alt text](image-1.png)
 
 ## 📜 Licencia
 
